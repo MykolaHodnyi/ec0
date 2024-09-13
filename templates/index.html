@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}
+eCo
+{% endblock %}
+
+{% block body %}
+<main class="page">
+   <section class="page__main main-block">
+      <div class="main-block__container">
+            <div class="main-block__content">
+               <h1 class="main-block__title">eCo</h1>
+               <p class="main-block__text">Виберіть свій <span class="yellow">екологічний транспорт</span></p>
+               <a href="#"><button type="button" class="main-block__button button-yellow">Почати</button></a>
+            </div>
+      </div>
+   </section>
+   <section class="page__description description">
+      <div class="description__container">
+         <div class="description__content">
+            <h2 class="description__title title">
+               Дізнайтеся більше про <span class="yellow">зелені</span> альтернативи транспорту
+            </h2>
+            <div class="description__content-item description-item">
+               <div class="description-item__images">
+                  <img class="double" src="../static/image/main-page/main-page-2.png" alt="image">
+                  <img class="double" src="../static/image/main-page/main-page-3.png" alt="image">
+               </div>
+               <div class="description-item__text">
+                  <p>
+                     Вітаємо вас на нашому веб-ресурсі, присвяченому екологічним 
+                     транспортним рішенням. Тут ви знайдете інформацію про екологічно чисті види транспорту, 
+                     їх переваги та вплив на навколишнє середовище.
+                  </p>
+               </div>
+            </div>
+            <div class="description__content-item description-item">
+               <div class="description-item__text">
+                  <h2 class="description__title title">
+                     Знаходьте <span class="yellow">найкращий</span> варіант для себе
+                  </h2>
+                  <p>
+                     Ми пропонуємо вам огляд різноманітних видів екологічного транспорту, 
+                     від електромобілів до велосипедів, щоб ви могли зробити свій вибір на користь збереження довкілля.
+                  </p>
+               </div>
+               <div class="description-item__images">
+                  <img src="../static/image/main-page/main-page-4.png" alt="image">
+               </div>
+            </div>
+            <h2 class="description__title title">
+               Рухайтеся з метою <span class="yellow">збереження</span> природи
+            </h2>
+            <div class="description__content-item description-item">
+               <div class="description-item__images">
+                  <img class="double" src="../static/image/main-page/main-page-5.png" alt="image">
+                  <img class="double" src="../static/image/main-page/main-page-6.png" alt="image">
+               </div>
+               <div class="description-item__text">
+                  <p>
+                     Приєднуйтесь до нашої спільноти еко-свідомих користувачів, які обирають зелені 
+                     альтернативи транспорту та вносять свій внесок у збереження навколишнього середовища.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="page__vehicles vehicles">
+      <div class="vehicles__container">
+         <h2 class="vehicles__title">Вибери свій екологічний транспорт</h2>
+         <div class="vehicles__slider swiper">
+            <div class="vehicles__wrapper swiper-wrapper">
+               {% for item in vehicles_json1 %}
+               <div class="vehicles__slide swiper-slide" lazy="true">
+                  {% if item['vehicle_title_image_mimetype'].startswith('image/') %}
+                     <img class="swiper-slide__img" src="data:{{ item['vehicle_title_image_mimetype'] }};base64,{{ item['vehicle_title_image'] }}" loading="lazy" alt="{{ item['vehicle_title_image_name'] }}">
+                  {% else %}
+                     <p>Image not exist</p>
+                  {% endif %}
+                  <h3 class="swiper-slide__title">{{ item.vehicle_brand }}</h3>
+                  <p class="swiper-slide__model">Модель: {{ item.vehicle_model }}</p>
+                  {% if item['fuel_type'] == 'Diesel' %}
+                  <div class="swiper-slide__label" style="background-color: #c70c7c">
+                     <span>{{ item.fuel_type }}</span>
+                   </div>
+                  {% endif %}
+                  {% if item['fuel_type'] == 'Benzin' %}
+                  <div class="swiper-slide__label" style="background-color: #e0431b">
+                     <span>{{ item.fuel_type }}</span>
+                   </div>
+                  {% endif %}
+                  {% if item['fuel_type'] == 'Hybrid' %}
+                  <div class="swiper-slide__label" style="background-color: #02a881">
+                     <span>{{ item.fuel_type }}</span>
+                   </div>
+                  {% endif %}
+                  {% if item['fuel_type'] == 'Electric' %}
+                  <div class="swiper-slide__label" style="background-color: #486e00">
+                     <span>{{ item.fuel_type }}</span>
+                   </div>
+                  {% endif %}
+                  {% if item['fuel_type'] == 'Human-Powered' %}
+                  <div class="swiper-slide__label" style="background-color: #9d11ad">
+                     <span>{{ item.fuel_type }}</span>
+                   </div>
+                  {% endif %}
+               </div>
+               {% endfor %}
+            </div>
+            <div class="swiper-pagination-container"></div>
+         </div>
+      </div>
+   </section>
+   <section class="page__routes routes">
+      <div class="routes__container">
+            <div class="routes__content">
+               <h2 class="routes__title">Плануй свій <span class="yellow">маршрут</span></h2>
+               <img src="../static/image/main-page/main-page-7.png" alt="Background of main block">
+               <a href="#"><button type="button" class="routes__button button">Маршрут</button></a>
+            </div>
+      </div>
+   </section>
+   <section class="page__compare compare">
+      <div class="compare__container">
+         <h2 class="compare__title">Порівнюй <span class="yellow">транспорт</span></h2>
+         <div class="compare__content">
+            <a href="#"><button type="button" class="compare__button button">Порівняти</button></a>
+         </div>
+      </div>
+   </section>
+</main>
+{% endblock %}
+

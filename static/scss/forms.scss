@@ -1,0 +1,92 @@
+.form__content {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 80vh;
+}
+
+form {
+   padding: 50px 30px;
+   border: 1px solid #000000;
+   border-radius: 28px;
+   label {
+      color: $greenColorHover;
+      margin-bottom: 10px;
+   }
+   .error {
+      color: #b30c0c;
+      padding-top: 10px;
+      padding-left: 10px;
+   }
+   .form-control {
+      width: 100%;
+      padding: 10px 20px;
+      border: 1px solid $greenColorHover;
+      border-radius: 11px;
+   }
+   .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+   }
+   select {
+      font-size: 18px;
+   }
+}
+
+.login {
+   & form {
+      @include adaptiveValue("width", 500, 319);
+   }
+}
+
+.registration {
+   & form {
+      @include adaptiveValue("width", 500, 319);
+   }
+   margin-top: rem(100);
+   margin-bottom: rem(120);
+}
+
+.edit {
+   & form {
+      @include adaptiveValue("width", 500, 319);
+   }
+   margin-top: rem(30);
+   &__title {
+      font-size: 22px;
+      margin-bottom: rem(22);
+   }
+}
+
+.vehicle-add {
+   @include adaptiveValue("margin-top", 200, 250);
+
+   & form {
+      @include adaptiveValue("width", 500, 319);
+   }
+
+   @include adaptiveValue("margin-bottom", 200, 150);
+}
+
+.search {
+   & form {
+      @include adaptiveValue("width", 500, 319);
+   }
+}
+
+.form__actions {
+   display: flex;
+   gap: 20px;
+   & .button-yellow {
+      flex: 1 1 50%;
+   }
+   & .button {
+      flex: 1 1 50%;
+   }
+}
+
+.choose {
+   @include adaptiveValue("margin-top", 108, 50);
+}

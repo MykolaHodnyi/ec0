@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="user-edit__container">
+   <div class="form__content edit">
+      <form class="form" method="POST">
+         <h3 class="edit__title">Edit User-Email: {{form_name}}</h3>
+         {{ form.hidden_tag() }}
+         <div class="form-group">
+            {{ form.user_first_name.label }}
+            {{ form.user_first_name(class_="form-control") }}
+            {% if form.user_first_name.errors%}
+               <div class="alert" role="alert">
+                  {% for message in form.user_first_name.errors %}
+                     <div class="error">{{ message }}</div>
+                  {% endfor %}
+               </div>
+            {%endif%}
+         </div>
+         <div class="form-group">
+            {{ form.user_second_name.label }}
+            {{ form.user_second_name(class_="form-control") }}
+            {% if form.user_second_name.errors%}
+               <div class="alert" role="alert">
+                  {% for message in form.user_second_name.errors %}
+                        <div class="error">{{ message }}</div>
+                  {% endfor %}
+               </div>
+            {%endif%}
+         </div>
+         <div class="form-group">
+            {{ form.user_birthday.label }}
+            {{ form.user_birthday(class_="form-control") }}
+            {% if form.user_birthday.errors%}
+               <div class="alert" role="alert">
+                  {% for message in form.user_birthday.errors %}
+                     <div class="error">{{ message }}</div>
+                  {% endfor %}
+               </div>
+            {%endif%}
+         </div>
+         <div class="form-group">
+            {{ form.user_phone.label }}
+            {{ form.user_phone(class_="form-control") }}
+            {% if form.user_phone.errors%}
+               <div class="alert" role="alert">
+                  {% for message in form.user_phone.errors %}
+                     <div class="error">{{ message }}</div>
+                  {% endfor %}
+               </div>
+            {%endif%}
+         </div>
+         {{ form.submit(class_="button") }}
+      </form>
+   </div>
+</main>
+{% endblock %}

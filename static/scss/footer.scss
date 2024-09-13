@@ -1,0 +1,40 @@
+.footer {
+   background: $mainGradient;
+   padding: top 60px;
+   padding-bottom: 60px;
+   &__container {
+      display: flex;
+   }
+   &__banner {
+      flex: 1 1 50%;
+   }
+   &__social {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+   }
+   &__menu {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+   }
+   &__logo {
+      flex: 1 1 auto;
+      font-weight: 900;
+      font-size: 24px;
+      color: $greenColor;
+      margin-bottom: rem(30);
+   }
+}
+.menu-list {
+   display: flex;
+   row-gap: 20px;
+   flex-wrap: wrap;
+}
+.menu-item {
+   &:not(:last-child) {
+      margin-right: 20px;
+   }
+}

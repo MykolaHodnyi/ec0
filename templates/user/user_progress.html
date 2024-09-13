@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="user-page__progress progress">
+   <div class="progress__container">
+      <div class="user-page__content">
+         <div class="user-page__sidenav">
+             <div class="list-group">
+               <a href="/user_change_vehicle" class="list-group-item">Ваші транспортні засоби</a>
+               <a href="/user_page" class="list-group-item">Ваш акаунт</a>
+               <a href="/user_comparessions" class="list-group-item">Історія порівнянь</a>
+             </div>
+         </div>
+         <div class="user-page__col">
+            <h1 class="title" style="margin-bottom: 30px;">Ви заощадили:</h1>
+            <table class="table">
+               <thead class="thead-light">
+               <tr>
+                   <th scope="col">
+                       <span>Викиди CO2(кг)</span>
+                   </th>
+                   <th scope="col">
+                       <span>Пальне(л)</span>
+                   </th>
+                   <th scope="col">
+                       <span>Кошти(грн)</span>
+                   </th>
+               </tr>
+               <tr>
+                   <td scope="row" style="text-align: center">
+                       {{ result_progress.emission_sum }}
+                   </td>
+                   <td scope="row" style="text-align: center">
+                       {{ result_progress.fuel_sum }}
+                   </td>
+                   <td scope="row" style="text-align: center">
+                       {{ result_progress.money_sum }}
+                   </td>
+               </tr>
+               </thead>
+            </table>
+         </div>
+      </div>
+   </div>
+</main>
+{% endblock %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+   <meta charset="UTF-8">
+   <meta name="format-detection" content="telephone=no">
+   <link rel="stylesheet" href="{{ url_for('static', filename='scss/style.css') }}">
+   <meta name="msapplication-TileColor" content="#0053aa">
+   <meta name="theme-color" content="#ffffff">
+   <meta name="msapplication-TileColor" content="#ffc40d">
+   <meta name="theme-color" content="#ddd401">
+   <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+   />
+   <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{% block title %}{% endblock %}</title>
+   {% block links %}{% endblock %}
+</head>
+<body>
+   <div class="wrapper">
+      <header class="header">
+         <div class="header__container">
+            <h4 class="header__logo"><a href="/">eCo</a></h5>
+            <nav class="header__menu menu">
+               <ul class="menu-list">
+                  {% if session['role'] == 'user_email' %}
+                     <li class="menu-item">
+                        <a class="menu-link" href="/compare">Порівняти</a>
+                     </li>
+                     <li class="menu-item">
+                        <a class="menu-link" href="/route">Маршрут</a>
+                     </li>
+                  {% endif %}
+                  {% if session['user_email'] %}
+                     <li class="menu-item">
+                        <a class="menu-link" href="/user_page">
+                           {{ session['user_email'] }}
+                        </a>
+                     </li>
+                     <li class="menu-item">
+                        <a class="menu-link" href="/logout">Вийти</a>
+                     </li>
+                     {% else %}
+                     <li class="menu-item">
+                        <a class="menu-link" href="/login">
+                           Увійти/Зареєструватися
+                        </a>
+                     </li>
+                  {% endif %}
+               </ul>
+            </nav>
+         </div>
+      </header>
+      {% block body %}{% endblock %}
+      <footer class="footer">
+         <div class="footer__container">
+            <div class="footer__banner">
+               <h4 class="footer__logo"><a href="/">eCo</a></h4>
+               <h3  class="footer__rights">Copyright © All rights reserved</h5>
+            </div>
+            <div class="footer__menu menu">
+               <nav class="footer__menu menu">
+                  <ul class="menu-list">
+                     {% if session['role'] == 'user_email' %}
+                        <li class="menu-item">
+                           <a class="menu-link" href="/compare">Порівняти</a>
+                        </li>
+                        <li class="menu-item">
+                           <a class="menu-link" href="/route">Маршрут</a>
+                        </li>
+                     {% endif %}
+                     {% if session['user_email'] %}
+                        <li class="menu-item">
+                           <a class="menu-link" href="/user_page">
+                              {{ session['user_email'] }}
+                           </a>
+                        </li>
+                        <li class="menu-item">
+                           <a class="menu-link" href="/logout">Вийти</a>
+                        </li>
+                     {% else %}
+                        <li class="menu-item">
+                           <a class="menu-link" href="/login">
+                              Увійти/Зареєструватися
+                           </a>
+                        </li>
+                     {% endif %}
+                  </ul>
+               </nav>
+            </div>
+         </div>
+       </footer>
+   </div>
+   <script type="module">
+      import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+    
+      const swiper = new Swiper('.swiper', {
+         direction: 'horizontal',
+         loop: false,
+         slidesPerView: 4,
+         spaceBetween: 22,
+         
+         pagination: {
+            clickable: true,
+            el: '.swiper-pagination-container',
+         },
+         breakpoints: {
+            319: {
+					slidesPerView: 1.2,
+					spaceBetween: 10,
+               centeredSlides: true,
+               slidesPerGroup: 1,
+				},
+				640: {
+					slidesPerView: 2.1,
+					spaceBetween: 10,
+               slidesPerGroup: 2,
+				},
+				768: {
+					slidesPerView: 3.1,
+					spaceBetween: 20,
+               slidesPerGroup: 3,
+				},
+				992: {
+					slidesPerView: 4.1,
+					spaceBetween: 20,
+               slidesPerGroup: 4,
+				},
+			},
+      });
+   </script>
+   <script src="../static/js/script.js"></script>
+</body>
+</html>

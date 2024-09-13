@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="search__container">
+   <div class="form__content search">
+      <form class="form" method="POST">
+         <div class="form-group">
+            {{ form.search_value.label }}
+            {{ form.search_value(class_="form-control") }}
+            {% if form.search_value.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.search_value.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         {{ form.submit(class_="button") }}
+      </form>
+      <a href="/user_change_vehicle">
+         <button class="button-yellow" style="margin-top: 20px">Назад</button>
+      </a>
+   </div>
+</main>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="choose-vehicl-page choose">
+   <div class="choose__container">
+      <form action="/compare" method="post">
+         <h1 class="subtitle">Порівняти транспортні засоби</h1>
+
+         <fieldset class="form-group">
+            <label for="vehicle1">Виберіть свій транспорт:</label>
+            <select id="vehicle1" name="vehicle1" required>
+               {% for result_vehicle in result_vehicle %}
+                  <option value="{{ result_vehicle.vehicle_id }}">{{ result_vehicle.vehicle_brand }} - {{ result_vehicle.vehicle_model }}</option>
+               {% endfor %}
+            </select>
+         </fieldset>
+
+         <fieldset class="form-group">
+            <label for="vehicle2">Виберіть транспорт для порівняння:</label>
+            <select id="vehicle2" name="vehicle2" required>
+               {% for vehicle in vehicles %}
+                  <option value="{{ vehicle.vehicle_id }}">{{ vehicle.vehicle_brand }} - {{ vehicle.vehicle_model }}</option>
+               {% endfor %}
+            </select>
+         </fieldset>
+         
+         <button type="submit" class="button">Порівняти</button>
+      </form>
+   </div>
+</main>
+{% endblock %}

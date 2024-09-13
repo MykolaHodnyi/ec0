@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="user-page__comparession comparession">
+   <div class="comparession__container">
+      <div class="user-page__content">
+         <div class="user-page__sidenav">
+             <div class="list-group">
+               <a href="/user_change_vehicle" class="list-group-item">Ваші транспортні засоби</a>
+               <a href="/user_progress" class="list-group-item">Ваш прогрес</a>
+               <a href="/user_page" class="list-group-item">Ваш акаунт</a>
+             </div>
+         </div>
+         <div class="user-page__col">
+            <table class="table">
+               <thead class="thead-light">
+               <tr>
+                   <th scope="col" style="text-align: center">
+                       <span>Марка першого транспорту</span>
+                   </th>
+                   <th scope="col" style="text-align: center">
+                       <span>Марка другого транспорту</span>
+                   </th>
+                   <th scope="col" style="text-align: center">
+                       <span>Дата проведення порівняння</span>
+                   </th>
+               </tr>
+               {% for item in result_comparessions %}
+                  <tr>
+                     <td scope="row" style="text-align: center">
+                        {{ item.vehicle1_brand }}
+                     </td>
+                     <td scope="row" style="text-align: center">
+                        {{ item.vehicle2_brand }}
+                     </td>
+                     <td scope="row" style="text-align: center">
+                        {{ item.comparison_timestamp }}
+                     </td>
+                  </tr>
+               {% endfor %}
+               </thead>
+            </table>
+         </div>
+      </div>
+   </div>
+</main>
+{% endblock %}

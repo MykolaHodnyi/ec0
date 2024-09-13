@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Порівняння{% endblock %}
+
+{% block body %}
+<main class="compare-page compare">
+   <div class="compare__container">
+      <h1 class="compare__title">Результати порівняння</h1>
+      <div class="compare__info">
+         <div class="compare__first-vehicle first">
+            <h2 class="first__title subtitle">Ваш транспорт: {{ result1_json.vehicle_brand }}  {{ result1_json.vehicle_model }}</h2>
+            <div class="first-info">
+               <p>Рік випуску транспорту: {{ result1_json.vehicle_year }}</p>
+               <p>Тип палива транспорту: {{ result1_json.fuel_type }}</p>
+            </div>
+            <div class="first__image">
+               {% if result1_json['vehicle_title_image_mimetype'].startswith('image/') %}
+                  <img src="data:{{ result1_json['vehicle_title_image_mimetype'] }};base64,{{ result1_json['vehicle_title_image'] }}" alt="{{ result1_json['vehicle_title_image_name'] }}">
+               {% else %}
+                  <p>Зображення не знайдено</p>
+               {% endif %}
+            </div>
+         </div>
+         <div class="compare__second-vehicle second">
+            <h2 class="second__title subtitle">Порівнювальний транспорт: {{ result2_json.vehicle_brand }}  {{ result2_json.vehicle_model }}</h2>
+            <div class="second-info">
+               <p>Рік випуску транспорту: {{ result2_json.vehicle_year }}</p>
+               <p>Тип палива транспорту: {{ result2_json.fuel_type }}</p>
+            </div>
+            <div class="second__image">
+               {% if result2_json['vehicle_title_image_mimetype'].startswith('image/') %}
+               <img src="data:{{ result2_json['vehicle_title_image_mimetype'] }};base64,{{ result2_json['vehicle_title_image'] }}" alt="{{ result2_json['vehicle_title_image_name'] }}">
+               {% else %}
+                  <p>Зображення не знайдено</p>
+               {% endif %}
+            </div>
+         </div>
+      </div>
+      {{ plot1_div|safe }}
+      {{ plot2_div|safe }}
+      {{ plot3_div|safe }}
+      <div class="compare__result">
+         {% if environment_impact_1 > environment_impact_2 %}
+            <h3 class="compare__result-title subtitle">Висновок:</h3>
+            <p class="compare__result-description">Враховуючи вищевказані показники транспортних засобів можна зробити висновок, що для зменшення викидів CO2 у довколишнє середовище краше обрати {{ result2_json.vehicle_brand }}  {{ result2_json.vehicle_model }}</p>
+         {% endif %}
+         {% if environment_impact_2 > environment_impact_1 %}
+            <h3 class="compare__result-title subtitle">Висновок:</h3>
+            <p class="compare__result-description">Враховуючи вищевказані показники транспортних засобів можна зробити висновок, що для зменшення викидів CO2 у довколишнє середовище краше обрати {{ result1_json.vehicle_brand }}  {{ result1_json.vehicle_model }}</p>
+         {% endif %}
+         {% if environment_impact_2 == environment_impact_1 %}
+            <h3 class="compare__result-title subtitle">Висновок:</h3>
+            <p class="compare__result-description">Два порівнювальних транспорта однаково впливають на довколишнє середовище</p>
+         {% endif %}
+      </div>
+   </div>
+</main>
+{% endblock %}

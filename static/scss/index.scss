@@ -1,0 +1,225 @@
+.page {
+   &__main {
+   }
+
+   &__description {
+   }
+
+   &__vehicles {
+   }
+
+   &__routes {
+   }
+
+   &__compare {
+   }
+}
+
+.main-block {
+   @include adaptiveValue("padding-top", 100, 65);
+
+   &__content {
+      border-radius: rem(24);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      @include adaptiveValue("height", 780, 400);
+      background: url("../../static/image/main-page/main-page-1.png") 0 0 / auto 100% no-repeat;
+   }
+
+   &__title {
+      @include adaptiveValue("font-size", 48, 38);
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      &:not(:last-child) {
+         margin-bottom: rem(40);
+      }
+   }
+
+   &__text {
+      max-width: rem(390);
+      @include adaptiveValue("max-width", 390, 260);
+      text-align: center;
+      font-size: 20px;
+      @include adaptiveValue("font-size", 20, 18);
+      line-height: 28px; /* 140% */
+      &:not(:last-child) {
+         margin-bottom: rem(60);
+      }
+   }
+
+   &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 120, 60);
+   }
+}
+
+.description {
+   &__title {
+      &:not(:last-child) {
+         @include adaptiveValue("margin-bottom", 40, 20);
+      }
+   }
+}
+
+.description-item {
+   display: flex;
+   align-items: center;
+   @include adaptiveValue("gap", 40, 5);
+   &__images {
+      display: flex;
+      flex: 0 1 50%;
+      align-items: center;
+      justify-content: center;
+      @include adaptiveValue("gap", 20, 5);
+      img {
+         max-width: 100%;
+      }
+      @media (max-width: $tablet) {
+         flex-direction: column;
+      }
+   }
+
+   &__text {
+      flex: 0 1 50%;
+      & p {
+         color: #000;
+         line-height: 28px; /* 155.556% */
+         &:not(:last-child) {
+            margin-bottom: rem(16);
+         }
+      }
+   }
+   @include adaptiveValue("margin-bottom", 120, 60);
+   @media (max-width: $mobile) {
+      flex-direction: column;
+   }
+}
+
+.vehicles {
+   &__title {
+      text-align: center;
+      color: $greenColor;
+      font-size: 48px;
+      @include adaptiveValue("font-size", 48, 30);
+      font-weight: 700;
+      @include adaptiveValue("margin-bottom", 62, 20);
+   }
+
+   &__slider {
+      height: 445px;
+   }
+
+   &__slide {
+      display: flex;
+      flex-direction: column;
+      border-radius: rem(28);
+      max-width: 292px;
+      max-height: 385px;
+      border: 1px solid $greenColor;
+
+      & img {
+         border-radius: rem(28) rem(28) 0 0;
+         margin-bottom: rem(23);
+         width: 100%;
+         height: 200px;
+      }
+   }
+   &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 120, 30);
+   }
+}
+
+.swiper-pagination-container {
+   position: absolute;
+   z-index: 10;
+   bottom: 150px;
+   transform: translateX(50%);
+
+   .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background-color: $greenColor;
+   }
+}
+
+.swiper-slide {
+   &__label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 12px;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 14px;
+   }
+
+   &__title {
+      margin-left: 14px;
+      font-weight: 700;
+      font-size: 22px;
+      &:not(:last-child) {
+         margin-bottom: 14px;
+      }
+   }
+
+   & p {
+      margin-left: 14px;
+      font-size: 22px;
+   }
+}
+
+.routes {
+   &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      & img {
+         width: 100%;
+         &:not(:last-child) {
+            margin-bottom: 60px;
+         }
+      }
+   }
+
+   &__title {
+      text-align: center;
+      color: $greenColor;
+      font-size: 48px;
+      @include adaptiveValue("font-size", 48, 30);
+      font-weight: 700;
+      @include adaptiveValue("margin-bottom", 62, 20);
+   }
+
+   &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 120, 30);
+   }
+}
+
+.compare {
+   &__content {
+      border-radius: rem(24);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      @include adaptiveValue("height", 605, 220);
+      background: url("../../static/image/main-page/main-page-8.png") 0 0 / auto 100% no-repeat;
+   }
+
+   &__title {
+      text-align: center;
+      color: $greenColor;
+      font-size: 48px;
+      @include adaptiveValue("font-size", 48, 30);
+      font-weight: 700;
+      @include adaptiveValue("margin-bottom", 62, 20);
+   }
+
+   @include adaptiveValue("margin-bottom", 120, 30);
+}

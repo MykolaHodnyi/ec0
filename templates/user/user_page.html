@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="user-page__container">
+   <div class="user-page__content">
+       <div class="user-page__sidenav">
+           <div class="list-group">
+               <a href="/user_change_vehicle" class="list-group-item">Ваші транспортні засоби</a>
+               <a href="/user_progress" class="list-group-item">Ваш прогрес</a>
+               <a href="/user_comparessions" class="list-group-item">Історія порівнянь</a>
+           </div>
+       </div>
+       <div class="user-page__col">
+         <p class="user-page__label">Ім’я:</p>
+         <h2 class="user-page__value">{{ result_user.user_first_name }} {{ result_user.user_second_name }}</h2>
+         <p class="user-page__label">Email:</p>
+         <h2 class="user-page__value">{{ result_user.user_email }}</h2>
+         <p class="user-page__label">Номер телефону:</p>
+         <h2 class="user-page__value">{{ result_user.user_phone }}</h2>
+         <p class="user-page__label">Дата народження:</p>
+         <h2 class="user-page__value">{{ result_user.user_birthday }}</h2>
+         <a href="/edit_user/{{ result_user.user_email }}"><button type="button" class="compare__button button">Змінити</button></a>
+       </div>
+   </div>
+</main>
+{% endblock %}

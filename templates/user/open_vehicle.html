@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ result_json.vehicle_brand }}{% endblock %}
+{% block body %}
+<main class="open-vehicle">
+   <div class="open-vehicle__container">
+      <h1 class="open-vehicle__title">Інформація про {{ result_json.vehicle_brand }} {{ result_json.vehicle_model }}</h1>
+
+      <div class="open-vehicle__info">
+         <div class="open-vehicle__description">
+            <h3 class="open-vehicle__param">Марка:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.vehicle_brand }}</h2>
+   
+            <h3 class="open-vehicle__param">Модель:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.vehicle_model }}</h2>
+   
+            <h3 class="open-vehicle__param">Ціна(грн):</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.vehicle_price }}</h2>
+   
+            <h3 class="open-vehicle__param">Дата виготовлення:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.vehicle_year }}</h2>
+   
+            <h3 class="open-vehicle__param">Витрата палива:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.fuel_consumption }}</h2>
+   
+            <h3 class="open-vehicle__param">Викиди CO2(кг/100км):</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.emission }}</h2>
+            
+            <h3 class="open-vehicle__param">Тип палива:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.fuel_type }}</h2>
+   
+            <h3 class="open-vehicle__param">Потужність електродвигуна(кВт/год):</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.kilowatt_hour }}</h2>
+   
+            <h3 class="open-vehicle__param">Викиди від електроенергії:</h3>
+            <h2 class="open-vehicle__value subtitle">{{ result_json.emissions_of_electricity }}</h2>
+          </div>
+          <div class="open-vehicle__image">
+            {% if result_json['vehicle_title_image_mimetype'].startswith('image/') %}
+               <img src="data:{{ result_json['vehicle_title_image_mimetype'] }};base64,{{ result_json['vehicle_title_image'] }}" alt="{{ result_json['vehicle_title_image_name'] }}">
+            {% else %}
+               <p>Image not exist</p>
+            {% endif %}
+          </div>
+      </div>
+   </div>
+</main>
+{% endblock %}

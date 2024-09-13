@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block body %}
+   <main class="user-vehicle-add__container">
+      <div class="form__content vehicle-add">
+         <form class="form" action="/user_vehicle_add" method="POST" enctype="multipart/form-data">
+            <h3 class="form__name subtitle">Внести дані нового транспорту:</h3>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+               {{ form.fuel_type.label }}
+               {{ form.fuel_type(class_="form-control") }}
+               {% if form.fuel_type.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.fuel_type.errors %}
+                           <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            <div class="form-group">
+               {{ form.vehicle_brand.label }}
+               {{ form.vehicle_brand(class_="form-control") }}
+
+               {% if form.vehicle_brand.errors %}
+                     <div class="error" role="alert">
+                        {% for message in form.vehicle_brand.errors %}
+                           <div>{{ message }}</div>
+                        {% endfor %}
+                     </div>
+               {% endif %}
+            </div>
+            <div class="form-group">
+               {{ form.vehicle_model.label }}
+               {{ form.vehicle_model(class_="form-control") }}
+               {% if form.vehicle_model.errors %}
+                     <div class="error" role="alert">
+                        {% for message in form.vehicle_model.errors %}
+                           <div>{{ message }}</div>
+                        {% endfor %}
+                     </div>
+               {% endif %}
+            </div>
+            <div class="form-group form-fuel-consumption">
+               {{ form.fuel_consumption.label }}
+               {{ form.fuel_consumption(class_="form-control") }}
+               {% if form.fuel_consumption.errors %}
+                     <div class="error" role="alert">
+                        {% for message in form.fuel_consumption.errors %}
+                           <div>{{ message }}</div>
+                        {% endfor %}
+                     </div>
+               {% endif %}
+            </div>
+            <div class="form-group form-vehicle-kilowatt-hour">
+               {{ form.kilowatt_hour.label }}
+               {{ form.kilowatt_hour(class_="form-control") }}
+               {% if form.kilowatt_hour.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.kilowatt_hour.errors %}
+                           <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            <div class="form-group">
+               {{ form.vehicle_price.label }}
+               {{ form.vehicle_price(class_="form-control") }}
+               {% if form.vehicle_price.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.vehicle_price.errors %}
+                           <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            <div class="form-group">
+               {{ form.vehicle_year.label }}
+               {{ form.vehicle_year(class_="form-control") }}
+               {% if form.vehicle_year.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.vehicle_year.errors %}
+                           <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            <div class="form-group">
+               {{ form.vehicle_title_image.label }}
+               {{ form.vehicle_title_image(class_="form-control") }}
+               {% if form.vehicle_title_image.errors %}
+                  <div class="error" role="alert">
+                     {% for message in form.vehicle_title_image.errors %}
+                           <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+               {% endif %}
+            </div>
+            {{ form.submit(class_="button") }}
+         </form>
+      </div>
+   </main>
+   
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+         let fuelTypeSelect = document.getElementById('fuel_type');
+         let formFuelConsumption = document.querySelector('.form-fuel-consumption');
+         let formVehicleKilowattHour = document.querySelector('.form-vehicle-kilowatt-hour');
+
+         formVehicleKilowattHour.style.display = 'none';
+
+         fuelTypeSelect.addEventListener('change', function() {
+         let selectedFuelType = fuelTypeSelect.value;
+
+            if (selectedFuelType == 'Diesel' || selectedFuelType == 'Benzin') {
+            formVehicleKilowattHour.style.display = 'none';
+            formFuelConsumption.style.display = 'block';
+            } else if (selectedFuelType == 'Hybrid') {
+            formFuelConsumption.style.display = 'block';
+            formVehicleKilowattHour.style.display = 'block';
+            } else if (selectedFuelType == 'Electric') {
+            formFuelConsumption.style.display = 'none';
+            formVehicleKilowattHour.style.display = 'block';
+            } else if (selectedFuelType == 'Human-Powered') {
+            formFuelConsumption.style.display = 'none';
+            formVehicleKilowattHour.style.display = 'none';
+            }
+         });
+   });
+   </script>
+{% endblock %}

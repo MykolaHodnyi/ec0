@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="registration__container">
+   <div class="form__content registration">
+      <div class="form__name">
+            <h3 class="mb-0">{{ form_name }}</h3>
+      </div>
+      <form class="form" method="POST">
+         {{ form.hidden_tag() }}
+         <div class="form-group">
+            {{ form.user_email.label }}
+            {{ form.user_email(class_="form-control") }}
+
+            {% if form.user_email.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_email.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_first_name.label }}
+            {{ form.user_first_name(class_="form-control") }}
+
+            {% if form.user_first_name.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_first_name.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_second_name.label }}
+            {{ form.user_second_name(class_="form-control") }}
+
+            {% if form.user_second_name.errors %}
+               <div class="alert alert-danger" role="alert">
+                  {% for message in form.user_second_name.errors %}
+                        <div>{{ message }}</div>
+                  {% endfor %}
+               </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_phone.label }}
+            {{ form.user_phone(class_="form-control") }}
+
+            {% if form.user_phone.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_phone.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_birthday.label }}
+            {{ form.user_birthday(class_="form-control") }}
+
+            {% if form.user_birthday.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_birthday.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_password.label }}
+            {{ form.user_password(class_="form-control") }}
+
+            {% if form.user_password.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_password.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form-group">
+            {{ form.user_confirm_password.label }}
+            {{ form.user_confirm_password(class_="form-control") }}
+            {% if form.user_confirm_password.errors %}
+                  <div class="alert alert-danger" role="alert">
+                     {% for message in form.user_confirm_password.errors %}
+                        <div>{{ message }}</div>
+                     {% endfor %}
+                  </div>
+            {% endif %}
+         </div>
+         <div class="form__actions">
+            {{ form.submit(class_="button-yellow") }}
+            <a href="/login" class="button">Увійти</a>
+         </div>
+      </form>
+   </div>
+</main>
+{% endblock %}

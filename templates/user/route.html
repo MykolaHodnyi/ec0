@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="route">
+   <div class="route__container">
+      <h1 class="route__title title">Вибір маршруту для поїздки</h1>
+      <form class="form__route">
+         <div class="form-group">
+             <label for="from" class="form__routelabel">
+               Пункт відправлення:
+             </label>
+             <div class="form__route__input">
+                 <input type="text" id="from" placeholder="Початок" class="form-control">
+             </div>
+         </div>
+         <div class="form-group">
+             <label for="to" class="form__routelabel">
+               Пункт призначення:
+             </label>
+             <div class="form__route__input">
+                 <input type="text" id="to" placeholder="Кінець" class="form-control">
+             </div>
+         </div>
+     </form>
+     <div class="route__mode">
+         <h3 class="subtitle">Спосіб подорожі:</h3>
+         <select id="mode">
+            <option value="DRIVING">Автомобілем</option>
+            <option value="WALKING">Пішки</option>
+            <option value="BICYCLING">Велосипедом</option>
+            <option value="TRANSIT">Громадським транспортом</option>
+         </select>
+      </div>
+     <div>
+         <button class="button lay-a-route">Прокласти</button>
+     </div>
+      <div id="map" style="margin-bottom: 60px;"></div>
+      <div class="route__result"></div>
+      <div id="result-table" class="route__table none">
+         <table class="table">
+             <thread>
+                 <tr>
+                     <th scope='col'>Автомобілем</th>
+                     <th scope='col'>Пішки</th>
+                     <th scope='col'>Велосипедом</th>
+                     <th scope='col'>Громадським</th>
+                 </tr>
+             </thread>
+             <tbody>
+             <tr>
+                 <td class="driving" id="driving-value"></td>
+                 <td class="transit" id="transit-value"></td>
+                 <td class="bicycling" id="bicycling-value"></td>
+                 <td class="walking" id="walking-value"></td>
+             </tr>
+             <tr>
+                 <td class="driving-time" id="driving-time-value"></td>
+                 <td class="transit-time" id="transit-time-value"></td>
+                 <td class="bicycling-time" id="bicycling-time-value"></td>
+                 <td class="walking-time" id="walking-time-value"></td>
+             </tr>
+             </tbody>
+         </table>
+      </div>
+      <div id="user-vehicle" class="fieldset-vehicle-value none">
+         <h4 class="subtitle">Виберіть свій транспорт: </h4>
+         {% for result in result_vehicle %}
+            {% if result.vehicle_brand %}
+               <div class="radio">
+                  <label for="user-vehicle">
+                     <input type="radio" name="user-vehicle" onclick="vehicleChoose()" id={{ result.vehicle_id }}> 
+                     {{ result.vehicle_brand }} {{ result.vehicle_model }}
+                  </label>
+               </div>
+            {% endif %}
+         {% endfor %}
+      </div>
+      <div id="choose-variant" class="fieldset-vehicle-value none">
+         <h4 class="subtitle">Виберіть свій варіант подолання цього маршруту: </h4>
+         <div class="radio">
+               <label><input type="radio" name="choose-variant" id="private-vehicle" disabled>Я хочу їхати на своєму особистому транспорті.</label>
+         </div>
+         <div class="radio">
+               <label><input type="radio" name="choose-variant" class="alternative" disabled>Хочу їхати альтернативним транспортом.</label>
+         </div>
+         <label for="quantity">Ціна пального:</label>
+         <input type="number" id="quantity" class="form-control" name="quantity" step="5" min="20.0" max="100.0" disabled> грн/літр <br>
+      </div>
+      <button class="button" onclick="methodOfRoute();">
+         Підтвердити
+      </button>
+</main>
+<script>
+function vehicleChoose() {
+   let vehicle = document.querySelector("input[type='radio'][name='user-vehicle']:checked");
+   if (vehicle) {
+      let chooseVariantRadios = document.querySelectorAll("input[type='radio'][name='choose-variant']");
+      let quantityInputs = document.querySelectorAll("input[type='number'][name='quantity']");
+         chooseVariantRadios.forEach(function(radio) {
+            radio.disabled = false;
+         });
+         quantityInputs.forEach(function(input) {
+            input.disabled = false;
+         });
+   } else {
+         alert("Please select an option");
+   }
+}
+function methodOfRoute() {
+   let selected = document.querySelector("input[type='radio'][name='choose-variant']:checked");
+   let priceFuel = document.getElementById("quantity").value;
+   if (selected && priceFuel > 0) {
+      let selectedValue = selected.className;
+         console.log(selectedValue);
+         if (selectedValue === "alternative") {
+            let userVehicleId = document.querySelector("input[type='radio'][name='user-vehicle']:checked").id;
+            fetch('/add_progress/' + userVehicleId, {
+               headers: {
+                  'Content-Type': 'application/json'
+               },
+               method: 'POST',
+               body: JSON.stringify({
+                  "priceFuel": priceFuel
+               })
+            });
+         }
+   } else {
+         alert("Please select an option");
+   }
+   window.setTimeout(function () {
+         window.location.reload();
+   }, 1000);
+}
+
+</script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa-0oQgjcNaCRZsE5ZGunNxgOB3aoAAbI&callback=initMap&v=weekly" defer>
+</script>
+<script defer src="{{ url_for('static', filename='js/google_map_action.js') }}"></script>
+{% endblock %}

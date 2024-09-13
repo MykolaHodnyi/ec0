@@ -1,0 +1,99 @@
+.title {
+   color: $greenColor;
+   font-size: 48px;
+   font-weight: 700;
+   max-width: 886px;
+   &-red {
+      color: #c20808;
+      font-size: 48px;
+      font-weight: 700;
+      margin-top: 108px;
+   }
+}
+.yellow {
+   color: $yellowColor;
+   font-weight: 700;
+   font-style: italic;
+   text-align: center;
+}
+.button {
+   color: #ffffff;
+   padding: 18px 25px;
+   border-radius: 12px;
+   background: $greenColor;
+   transition: all 0.3s;
+   text-align: center;
+   min-width: rem(150);
+   &-yellow {
+      padding: 18px 25px;
+      border-radius: 12px;
+      color: #000000;
+      background-color: $yellowColor;
+      transition: all 0.3s;
+      min-width: rem(150);
+      &:hover {
+         background-color: $yellowColorHover;
+      }
+   }
+   &-red {
+      padding: 18px 25px;
+      border-radius: 12px;
+      color: #ffffff;
+      background-color: #c20808;
+      transition: all 0.3s;
+      min-width: rem(150);
+      &:hover {
+         background-color: #870505;
+      }
+   }
+   &-disabled {
+      padding: 18px 25px;
+      border-radius: 12px;
+      color: #000000;
+      background-color: #7d7d7dc6;
+      pointer-events: none;
+   }
+   &:hover {
+      background: $greenColorHover;
+   }
+   @media (max-width: $mobile) {
+      width: 100%;
+   }
+}
+.route__title {
+   margin-bottom: 35px;
+}
+.lay-a-route {
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
+.route__mode {
+   margin-top: 30px;
+   margin-bottom: 30px;
+   & select {
+      font-size: 18px;
+   }
+   & option {
+      font-size: 18px;
+   }
+}
+.none {
+   display: none;
+}
+.subtitle__route {
+   font-size: 22px;
+   font-weight: 600;
+   color: $greenColor;
+   margin-bottom: 20px;
+   margin-top: 10px;
+   display: inline;
+}
+.fieldset-vehicle-value {
+   margin-bottom: 24px;
+}
+.subtitle {
+   font-size: 22px;
+   font-weight: 600;
+   color: $greenColor;
+   margin-bottom: 20px;
+}

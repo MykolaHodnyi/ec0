@@ -1,0 +1,66 @@
+@use "sass:math";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500,600,700,600italic,700italic,800italic,900italic&display=swap);
+$fontFamily: "Montserrat";
+$fontSize: 18px;
+$mainColor: #000;
+$greenColor: #486e00;
+$greenColorHover: #345001;
+$yellowColor: #ddd401;
+$yellowColorHover: #aaa503;
+$mainGradient: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(221, 212, 1, 0.40379901960784315) 100%);
+$minWidth: 320;
+$maxWidth: 1920;
+$maxWidthContainer: 1276;
+$containerPadding: 30;
+$containerWidth: $maxWidthContainer + $containerPadding;
+@import "null";
+.wrapper {
+   min-height: 100%;
+   display: flex;
+   flex-direction: column;
+   overflow: hidden;
+   @supports (overflow: clip) {
+      overflow: clip;
+   }
+
+   > main {
+      flex: 1 1 auto;
+   }
+
+   > * {
+      min-width: 0;
+   }
+}
+[class*="__container"] {
+   @if ($maxWidthContainer>0) {
+      max-width: rem($containerWidth);
+      margin: 0 auto;
+   }
+   @if ($containerPadding>0) {
+      @if ($maxWidthContainer>0) {
+         padding: 0 rem(math.div($containerPadding, 2));
+      } @else {
+         @include adaptiveValue("padding-left", math.div($containerPadding, 2), 15);
+         @include adaptiveValue("padding-right", math.div($containerPadding, 2), 15);
+      }
+   }
+}
+body {
+   color: $mainColor;
+   line-height: 1;
+   font-family: $fontFamily;
+   font-size: $fontSize;
+
+   -ms-text-size-adjust: 100%;
+   -moz-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+@import "header";
+@import "footer";
+@import "index";
+@import "common";
+@import "forms";
+@import "user";
+@import "map";

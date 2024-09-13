@@ -1,0 +1,37 @@
+.header {
+   position: fixed;
+   width: 100%;
+   z-index: 5;
+   padding-top: 41px;
+   padding-bottom: 41px;
+   transition: all 0.4s ease 0s;
+   &._header-scroll {
+      padding-top: 35px;
+      padding-bottom: 35px;
+      background-color: #b7aeae96;
+   }
+   &__container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+   }
+   &__logo {
+      flex: 1 1 auto;
+      font-weight: 900;
+      font-size: 24px;
+      color: $greenColor;
+   }
+}
+.menu {
+   &-link {
+      transition:
+         color 0.3s ease-in-out,
+         box-shadow 0.3s ease-in-out;
+      &:not(:last-child) {
+         margin-right: 20px;
+      }
+      &:hover {
+         color: $yellowColorHover;
+      }
+   }
+}

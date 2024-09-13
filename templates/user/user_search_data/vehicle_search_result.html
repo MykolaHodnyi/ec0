@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main class="result-vehicles__container">
+   <table class="result-vehicles__table table">
+      <thead>
+         <tr>
+               <th scope="col">Марка</th>
+               <th scope="col">Модель</th>
+               <th scope="col">Витрата палива (л)</th>
+               <th scope="col">CO2(кг/100км)</th>
+               <th scope="col">Тип палива</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for result in results_vehicle %}
+            {% if result.vehicle_brand %}
+               <tr>
+                  <td> {{ result.vehicle_brand }} </td>
+                  <td> {{ result.vehicle_model }} </td>
+                  <td> {{ result.fuel_consumption }} </td>
+                  <td> {{ result.emission }} </td>
+                  <td> {{ result.fuel_type }} </td>
+                  <td>
+                     <a href="/vehicle_search_result/{{ result.vehicle_id }}" type="button"class="button">+</a>
+                  </td>
+               </tr>
+            {% endif %}
+         {% endfor %}
+      </tbody>
+   </table>
+   <a href="/vehicle_search">
+      <button class="button-yellow">Назад</button>
+   </a>
+</main>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+      var links = document.querySelectorAll('a');
+      links.forEach(function(link) {
+         link.addEventListener('click', function() {
+               this.classList.remove('button');
+               this.classList.add('button-disabled');
+         });
+      });
+   });
+</script>
+
+{% endblock %}
